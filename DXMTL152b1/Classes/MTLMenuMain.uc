@@ -9,15 +9,15 @@ class MTLMenuMain extends MenuMain;
 
 function ShowVersionInfo()
 {
-	local TextWindow FunnyName512;
+	local TextWindow version;
 
-	FunnyName512 = TextWindow(NewChild(Class'TextWindow'));
-	FunnyName512.SetLines( 1, 2 );
-	FunnyName512.SetTextMargins( 0.0, 0.0 );
-	FunnyName512.SetWindowAlignments( HALIGN_Right, VALIGN_Bottom );
-	FunnyName512.SetTextColorRGB( 255, 255, 255 );
-	FunnyName512.SetTextAlignments( HALIGN_Right, VALIGN_Bottom );
-	FunnyName512.SetText( Player.GetDeusExVersion()$"|nSep 02 2002 DXMTL V1.52b1" );
+	version = TextWindow(NewChild(Class'TextWindow'));
+	version.SetLines( 1, 2 );
+	version.SetTextMargins( 0.0, 0.0 );
+	version.SetWindowAlignments( HALIGN_Right, VALIGN_Bottom );
+	version.SetTextColorRGB( 255, 255, 255 );
+	version.SetTextAlignments( HALIGN_Right, VALIGN_Bottom );
+	version.SetText( Player.GetDeusExVersion()$"|nSep 02 2002 DXMTL V1.52b1" );
 }
 
 //-----------------------------------------------------------------------------

@@ -37,13 +37,13 @@ function Initfor( Actor Other )
 
 function Destroyed()
 {
-	local Inventory FunnyName199;
+	local Inventory Inv;
 
 	while ( Inventory!=None )
 	{
-		FunnyName199 = Inventory;
-		DeleteInventory( FunnyName199 );
-		FunnyName199.Destroy();
+		Inv = Inventory;
+		DeleteInventory( Inv );
+		Inv.Destroy();
 	}
 	Super.Destroyed();
 }

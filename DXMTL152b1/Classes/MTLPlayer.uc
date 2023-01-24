@@ -1671,7 +1671,7 @@ function SpawnBlood( vector HitLocation, float Damage )
 function Carcass SpawnCarcass()
 {
 	local CBPCarcass FunnyName198;
-	local Inventory FunnyName199;
+	local Inventory Inv;
 	local vector Loc;
 
 	if ( Health>=-80 )
@@ -1692,15 +1692,15 @@ function Carcass SpawnCarcass()
 	}
 	while ( Inventory!=None )
 	{
-		FunnyName199 = Inventory;
-		DeleteInventory( FunnyName199 );
+		Inv = Inventory;
+		DeleteInventory( Inv );
 		if ( FunnyName198!=None )
 		{
-			FunnyName198.AddInventory( FunnyName199 );
+			FunnyName198.AddInventory( Inv );
 		}
 		else
 		{
-			FunnyName199.Destroy();
+			Inv.Destroy();
 		}
 	}
 	return FunnyName198;
@@ -1709,7 +1709,7 @@ function Carcass SpawnCarcass()
 function SpawnGibbedCarcass()
 {
 	local CBPCarcass FunnyName198;
-	local Inventory FunnyName199;
+	local Inventory Inv;
 
 	FunnyName198 = CBPCarcass(Spawn(CarcassType));
 	if ( FunnyName198!=None )
@@ -1719,9 +1719,9 @@ function SpawnGibbedCarcass()
 	}
 	while ( Inventory!=None )
 	{
-		FunnyName199 = Inventory;
-		DeleteInventory( FunnyName199 );
-		FunnyName199.Destroy();
+		Inv = Inventory;
+		DeleteInventory( Inv );
+		Inv.Destroy();
 	}
 }
 
@@ -1911,7 +1911,7 @@ function ServerMove( float FunnyName218, vector FunnyName219, vector FunnyName22
 final function FunnyName106( private float FunnyName218, private int FunnyName230, private vector FunnyName220, private vector FunnyName219, private bool FunnyName223, private bool FunnyName224, private bool FunnyName226, private bool FunnyName225, private bool FunnyName227, private bool FunnyName233, private bool FunnyName234, private bool FunnyName235, private optional byte FunnyName231, private optional int FunnyName232 )
 {
 	local Actor FunnyName236;
-	local rotator FunnyName237, FunnyName238;
+	local rotator FunnyName237, SpawnRotation;
 	local vector FunnyName239, FunnyName240;
 	local float DeltaTime, FunnyName241, FunnyName242, FunnyName243;
 	local int FunnyName244, FunnyName245, FunnyName246;
@@ -2302,21 +2302,21 @@ final function FunnyName106( private float FunnyName218, private int FunnyName23
 	// 0x0484:     EX_InstanceVariable (Property=Engine.LevelInfo.TimeSeconds)
 	// 0x0489: EX_Let
 	// 0x048A:   EX_StructMember (Property=Core.Object.Rotator.Yaw)
-	// 0x048F:     EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.FunnyName238)
+	// 0x048F:     EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.SpawnRotation)
 	// 0x0494:   EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.FunnyName245)
 	// 0x0499: EX_Let
 	// 0x049A:   EX_StructMember (Property=Core.Object.Rotator.Roll)
-	// 0x049F:     EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.FunnyName238)
+	// 0x049F:     EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.SpawnRotation)
 	// 0x04A4:   EX_IntZero
 	// 0x04A5: EX_Let
 	// 0x04A6:   EX_StructMember (Property=Core.Object.Rotator.Pitch)
-	// 0x04AB:     EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.FunnyName238)
+	// 0x04AB:     EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.SpawnRotation)
 	// 0x04B0:   EX_IntZero
 	// 0x04B1: EX_Let
 	// 0x04B2:   EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.FunnyName237)
 	// 0x04B7:   EX_Native (iNative=317,Function=Core.Object.Subtract_RotatorRotator,OperatorType=1)
 	// 0x04B9:     EX_InstanceVariable (Property=Engine.Actor.Rotation)
-	// 0x04BE:     EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.FunnyName238)
+	// 0x04BE:     EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.SpawnRotation)
 	// 0x04C4: EX_Let
 	// 0x04C5:   EX_StructMember (Property=Core.Object.Rotator.Pitch)
 	// 0x04CA:     EX_InstanceVariable (Property=Engine.Pawn.ViewRotation)
@@ -2330,7 +2330,7 @@ final function FunnyName106( private float FunnyName218, private int FunnyName23
 	// 0x04EA:     EX_InstanceVariable (Property=Engine.Pawn.ViewRotation)
 	// 0x04EF:   EX_IntZero
 	// 0x04F0: EX_Native (iNative=299,Function=Engine.Actor.SetRotation,OperatorType=0)
-	// 0x04F2:   EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.FunnyName238)
+	// 0x04F2:   EX_LocalVariable (Property=DXMTL152b1.MTLPlayer.FunnyName106.SpawnRotation)
 	// 0x04F8: EX_JumpIfNot (JumpOffset=0x0542)
 	// 0x04FB:   EX_Native (iNative=130,Function=Core.Object.AndAnd_BoolBool,OperatorType=1)
 	// 0x04FC:     EX_Native (iNative=177,Function=Core.Object.Greater_FloatFloat,OperatorType=1)
@@ -2911,7 +2911,7 @@ function ReplicateMove( float DeltaTime, vector FunnyName261, EDodgeDir FunnyNam
 	FunnyName106( FunnyName262.TimeStamp, int(FunnyName262.bRun)|int(FunnyName262.bDuck)<<1|(ViewRotation.Yaw&65534)<<1|(ViewRotation.Pitch&65534)<<16, Location, FunnyName262.Acceleration*10.0, bJumpStatus, FunnyName262.bFire, FunnyName262.bForceFire, FunnyName262.bAltFire, FunnyName262.bForceAltFire, !bool(int(FunnyName262.AmbientGlow)&1), bool(int(FunnyName262.AmbientGlow)&2), !bool(int(FunnyName262.AmbientGlow)&4), byte(FunnyName231), FunnyName232 );
 }
 
-final function bool FunnyName102( vector FunnyName276, rotator FunnyName238, out float FunnyName277 )
+final function bool FunnyName102( vector FunnyName276, rotator SpawnRotation, out float FunnyName277 )
 {
 	local Actor A;
 	local vector HitLocation, HitNormal, FunnyName279;
@@ -2919,7 +2919,7 @@ final function bool FunnyName102( vector FunnyName276, rotator FunnyName238, out
 	local float FunnyName282;
 	local int FunnyName283;
 
-	FunnyName279 = FunnyName276+Normal( Vector(FunnyName238) )*CollisionRadius*3.5;
+	FunnyName279 = FunnyName276+Normal( Vector(SpawnRotation) )*CollisionRadius*3.5;
 	foreach TraceTexture( Class'Actor', A, FunnyName280, FunnyName281, FunnyName283, HitLocation, HitNormal, FunnyName279, FunnyName276 )
 	{
 		if ( FunnyName281=='Ladder' )
@@ -2946,7 +2946,7 @@ final function bool FunnyName102( vector FunnyName276, rotator FunnyName238, out
 final function bool FunnyName100( int FunnyName284 )
 {
 	local vector FunnyName201;
-	local rotator FunnyName238;
+	local rotator SpawnRotation;
 	local float FunnyName277;
 	local int keyIndex;
 	local bool FunnyName285, FunnyName286;
@@ -2954,16 +2954,16 @@ final function bool FunnyName100( int FunnyName284 )
 	FunnyName277 = 1e+006.0;
 	FunnyName201 = Location;
 	FunnyName201.Z += CollisionHeight*float(FunnyName284);
-	FunnyName238.Yaw = Rotation.Yaw;
+	SpawnRotation.Yaw = Rotation.Yaw;
 	for ( keyIndex=0; keyIndex<8; keyIndex++ )
 	{
-		FunnyName286 = FunnyName102( FunnyName201, FunnyName238, FunnyName277 );
+		FunnyName286 = FunnyName102( FunnyName201, SpawnRotation, FunnyName277 );
 		FunnyName285 = FunnyName285 || FunnyName286;
 		if ( FunnyName285 && !FunnyName286 )
 		{
 			break;
 		}
-		FunnyName238.Yaw += 8192;
+		SpawnRotation.Yaw += 8192;
 	}
 	return FunnyName285;
 }
@@ -3776,7 +3776,7 @@ exec function BindKey( string FunnyName318 )
 exec function BindAug( int FunnyName207, name FunnyName319 )
 {
 	local DeusExPlayer Player;
-	local LevelInfo FunnyName320;
+	local LevelInfo L;
 	local int keyIndex;
 
 	if ( !FunnyName41() )
@@ -3786,10 +3786,10 @@ exec function BindAug( int FunnyName207, name FunnyName319 )
 	if ( FunnyName207<0 )
 	{
 		SaveConfig();
-		FunnyName320 = GetEntryLevel();
-		if ( FunnyName320!=None )
+		L = GetEntryLevel();
+		if ( L!=None )
 		{
-			foreach FunnyName320.AllActors( Class'DeusExPlayer', Player )
+			foreach L.AllActors( Class'DeusExPlayer', Player )
 			{
 				for ( keyIndex=0; keyIndex<9; keyIndex++ )
 				{

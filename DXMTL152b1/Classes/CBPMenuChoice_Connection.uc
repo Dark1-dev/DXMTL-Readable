@@ -31,16 +31,16 @@ function UpdateInfoButton()
 
 function PopulateConnectionSpeeds()
 {
-	local int FunnyName525, keyIndex;
+	local int typeIndex, keyIndex;
 
 	ConnectionSpeeds[7] = Class'Player'.default.ConfiguredInternetSpeed;
 	keyIndex = 7;
-	for ( FunnyName525=0; FunnyName525<8; FunnyName525++ )
+	for ( typeIndex=0; typeIndex<8; typeIndex++ )
 	{
-		enumText[FunnyName525] = ConnectionNames[FunnyName525] @ "(" $ string(ConnectionSpeeds[FunnyName525]) $ ")";
-		if ( FunnyName525!=7 && ConnectionSpeeds[FunnyName525]==ConnectionSpeeds[7] )
+		enumText[typeIndex] = ConnectionNames[typeIndex] @ "(" $ string(ConnectionSpeeds[typeIndex]) $ ")";
+		if ( typeIndex!=7 && ConnectionSpeeds[typeIndex]==ConnectionSpeeds[7] )
 		{
-			keyIndex = FunnyName525;
+			keyIndex = typeIndex;
 		}
 	}
 	SetValue( keyIndex );
@@ -73,9 +73,9 @@ function ResetToDefault()
 	LoadSetting();
 }
 
-function string GetModuleName( int FunnyName525 )
+function string GetModuleName( int typeIndex )
 {
-	return string(ConnectionSpeeds[FunnyName525]);
+	return string(ConnectionSpeeds[typeIndex]);
 }
 
 //-----------------------------------------------------------------------------

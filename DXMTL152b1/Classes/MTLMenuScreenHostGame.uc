@@ -100,9 +100,9 @@ function SetCustomizable( bool bCanCustomize )
 	}
 }
 
-function LockButtonSetting( MenuUIChoice FunnyName511 )
+function LockButtonSetting( MenuUIChoice SetButton )
 {
-	FunnyName511.LoadSetting();
+	SetButton.LoadSetting();
 }
 
 function ProcessAction( string actionKey )

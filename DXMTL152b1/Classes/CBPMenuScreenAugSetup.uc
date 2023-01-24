@@ -10,14 +10,14 @@ class CBPMenuScreenAugSetup extends menuscreenaugsetup;
 function SaveSettings()
 {
 	local DeusExPlayer Player;
-	local LevelInfo FunnyName320;
+	local LevelInfo L;
 	local int keyIndex;
 
 	Super.SaveSettings();
-	FunnyName320 = Player.GetEntryLevel();
-	if ( FunnyName320!=None )
+	L = Player.GetEntryLevel();
+	if ( L!=None )
 	{
-		foreach FunnyName320.AllActors( Class'DeusExPlayer', Player )
+		foreach L.AllActors( Class'DeusExPlayer', Player )
 		{
 			for ( keyIndex=0; keyIndex<9; keyIndex++ )
 			{

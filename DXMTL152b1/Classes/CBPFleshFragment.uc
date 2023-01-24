@@ -16,14 +16,14 @@ var float time;
 
 simulated final function FunnyName1()
 {
-	local vector FunnyName238;
+	local vector SpawnRotation;
 
 	if ( int(Level.NetMode)!=int(ENetMode.NM_DedicatedServer) )
 	{
 		Velocity = VRand()*float(300);
-		FunnyName238 = Velocity;
-		FunnyName238.Z = 0.0;
-		SetRotation( Rotator(FunnyName238) );
+		SpawnRotation = Velocity;
+		SpawnRotation.Z = 0.0;
+		SetRotation( Rotator(SpawnRotation) );
 		DrawScale = FRand()*1.1+1.1;
 		if ( Class'GameInfo'.default.bLowGore )
 		{

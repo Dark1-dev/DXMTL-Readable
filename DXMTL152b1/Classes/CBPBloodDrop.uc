@@ -21,11 +21,11 @@ simulated final function FunnyName1()
 	}
 }
 
-simulated final function FunnyName70( rotator FunnyName238 )
+simulated final function FunnyName70( rotator SpawnRotation )
 {
 	if ( int(Level.NetMode)!=int(ENetMode.NM_DedicatedServer) )
 	{
-		Spawn( Class'CBPBloodSplat', , , Location, FunnyName238 );
+		Spawn( Class'CBPBloodSplat', , , Location, SpawnRotation );
 		Destroy();
 	}
 }

@@ -36,7 +36,7 @@ var bool FunnyName483;
 
 final function FunnyName64( MTLPlayer Player )
 {
-	local Inventory FunnyName199;
+	local Inventory Inv;
 	local DeusExWeapon FunnyName484;
 
 	if ( Player==None || Player.PlayerReplicationInfo==None )
@@ -80,20 +80,20 @@ final function FunnyName64( MTLPlayer Player )
 	FunnyName482 = Player.SkillPointsAvail;
 	while ( Player.Inventory!=None )
 	{
-		FunnyName199 = Player.Inventory;
-		FunnyName484 = DeusExWeapon(FunnyName199);
+		Inv = Player.Inventory;
+		FunnyName484 = DeusExWeapon(Inv);
 		if ( FunnyName484!=None && FunnyName484.AmmoName!=FunnyName484.AmmoNames[0] )
 		{
 			FunnyName484.LoadAmmo( 0 );
 		}
-		Player.DeleteInventory( FunnyName199 );
-		if ( !FunnyName199.IsA('ChargedPickup') || !ChargedPickup(FunnyName199).IsActive() )
+		Player.DeleteInventory( Inv );
+		if ( !Inv.IsA('ChargedPickup') || !ChargedPickup(Inv).IsActive() )
 		{
-			FunnyName14( FunnyName199 );
+			FunnyName14( Inv );
 		}
 		else
 		{
-			FunnyName199.Destroy();
+			Inv.Destroy();
 		}
 	}
 	FunnyName466 = Player.AugmentationSystem;
@@ -115,7 +115,7 @@ final function FunnyName64( MTLPlayer Player )
 
 final function bool FunnyName15( MTLPlayer Player )
 {
-	local Inventory FunnyName199;
+	local Inventory Inv;
 
 	if ( Player==None || Player.PlayerReplicationInfo==None )
 	{
@@ -166,9 +166,9 @@ final function bool FunnyName15( MTLPlayer Player )
 	Player.SkillPointsAvail = FunnyName482;
 	while ( Player.Inventory!=None )
 	{
-		FunnyName199 = Player.Inventory;
-		Player.DeleteInventory( FunnyName199 );
-		FunnyName199.Destroy();
+		Inv = Player.Inventory;
+		Player.DeleteInventory( Inv );
+		Inv.Destroy();
 	}
 	if ( Player.AugmentationSystem!=None && FunnyName466!=None )
 	{
@@ -180,9 +180,9 @@ final function bool FunnyName15( MTLPlayer Player )
 	}
 	while ( Inventory!=None )
 	{
-		FunnyName199 = Inventory;
-		FunnyName16( FunnyName199 );
-		Player.AddInventory( FunnyName199 );
+		Inv = Inventory;
+		FunnyName16( Inv );
+		Player.AddInventory( Inv );
 	}
 	if ( FunnyName466!=None )
 	{
@@ -204,7 +204,7 @@ final function bool FunnyName15( MTLPlayer Player )
 
 function Destroyed()
 {
-	local Inventory FunnyName199;
+	local Inventory Inv;
 
 	if ( FunnyName213!=None )
 	{
@@ -216,9 +216,9 @@ function Destroyed()
 	}
 	while ( Inventory!=None )
 	{
-		FunnyName199 = Inventory;
-		FunnyName16( FunnyName199 );
-		FunnyName199.Destroy();
+		Inv = Inventory;
+		FunnyName16( Inv );
+		Inv.Destroy();
 	}
 	if ( FunnyName466!=None )
 	{
@@ -231,46 +231,46 @@ function Destroyed()
 	Super.Destroyed();
 }
 
-final function bool FunnyName14( Inventory FunnyName199 )
+final function bool FunnyName14( Inventory Inv )
 {
 	local Inventory CurInventory;
 
-	if ( FunnyName199==None )
+	if ( Inv==None )
 	{
 		return false;
 	}
 	for ( CurInventory=Inventory; CurInventory!=None; CurInventory=CurInventory.Inventory )
 	{
-		if ( CurInventory==FunnyName199 )
+		if ( CurInventory==Inv )
 		{
 			return false;
 		}
 	}
-	FunnyName199.SetOwner( Self );
-	FunnyName199.Inventory = Inventory;
-	FunnyName199.InitialState = 'Idle2';
-	FunnyName199.GotoState( 'Idle2' );
-	Inventory = FunnyName199;
+	Inv.SetOwner( Self );
+	Inv.Inventory = Inventory;
+	Inv.InitialState = 'Idle2';
+	Inv.GotoState( 'Idle2' );
+	Inventory = Inv;
 	return true;
 }
 
-final function FunnyName16( Inventory FunnyName199 )
+final function FunnyName16( Inventory Inv )
 {
 	local Actor FunnyName485;
 
-	if ( FunnyName199==None )
+	if ( Inv==None )
 	{
 		return;
 	}
 	for ( FunnyName485=Self; FunnyName485!=None; FunnyName485=FunnyName485.Inventory )
 	{
-		if ( FunnyName485.Inventory==FunnyName199 )
+		if ( FunnyName485.Inventory==Inv )
 		{
-			FunnyName485.Inventory = FunnyName199.Inventory;
+			FunnyName485.Inventory = Inv.Inventory;
 			break;
 		}
 	}
-	FunnyName199.SetOwner( None );
+	Inv.SetOwner( None );
 }
 
 //-----------------------------------------------------------------------------
